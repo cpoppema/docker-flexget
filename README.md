@@ -2,6 +2,8 @@
 
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
+An example FlexGet config.yml can be found at the bottom of [this page](http://flexget.com/Cookbook/Series/SeriesPresetMultipleRSStoTransmission).
+
 ## Usage
 
 ```
@@ -17,15 +19,16 @@ This container is based on phusion-baseimage with ssh removed. For shell access 
 
 **Parameters**
 
-* `-p 9091` - Transmission WebUI Port
-* `-v /config` - Transmission app data
-* `-v /downloads` - location of downloads on disk
 * `-e PGID` for for GroupID - see below for explanation
 * `-e PUID` for for UserID - see below for explanation
+* `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
+* `-v /downloads` - location of downloads on disk
 
 **Transmission**
 
 FlexGet is able to connect with transmission using `transmissionrpc`, which is pre-installed in this container. For more details, see http://flexget.com/wiki/Plugins/transmission.
+
+Please note: This Docker image does NOT run Transmission. Consider running a [Transmission Docker image](https://github.com/linuxserver/docker-transmission/) alongside this one.
 
 ### User / Group Identifiers
 
