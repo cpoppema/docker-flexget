@@ -17,10 +17,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service files.
 ADD init/ /etc/my_init.d/
+ADD services/ /etc/service/
+RUN chmod -v +x /etc/service/*/run
 RUN chmod -v +x /etc/my_init.d/*.sh
 
-# Add cron.
-ADD cron.d/ /etc/cron.d/
+EXPOSE 5050/tcp
 
 VOLUME /config
 

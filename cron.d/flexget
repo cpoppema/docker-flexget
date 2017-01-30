@@ -1,2 +1,0 @@
-# m h dom mon dow user  command
-0 *   * * *   abc    /usr/local/bin/flexget -c /config/config.yml --loglevel debug execute 2>&1 | logger -t FlexGet

@@ -10,8 +10,9 @@ An example FlexGet config.yml can be found at the bottom of [this page](http://f
 docker create \
     --name=flexget \
     -e PGID=<gid> -e PUID=<uid> \
-    -v </path/to/flexget/appdata>:/config \
-    -v <path/to/downloads>:/downloads \
+    -p 5050:5050 \
+    -v <path to data>:/config \
+    -v <path to downloads>:/downloads \
     cpoppema/docker-flexget
 ```
 
@@ -19,8 +20,9 @@ This container is based on phusion-baseimage with ssh removed. For shell access 
 
 **Parameters**
 
-* `-e PGID` for for GroupID - see below for explanation
-* `-e PUID` for for UserID - see below for explanation
+* `-e PGID` for GroupID - see below for explanation
+* `-e PUID` for UserID - see below for explanation
+* `-p 5050` for Web UI port - see below for explanation
 * `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
 * `-v /downloads` - location of downloads on disk
 
@@ -29,6 +31,34 @@ This container is based on phusion-baseimage with ssh removed. For shell access 
 FlexGet is able to connect with transmission using `transmissionrpc`, which is pre-installed in this container. For more details, see http://flexget.com/wiki/Plugins/transmission.
 
 Please note: This Docker image does NOT run Transmission. Consider running a [Transmission Docker image](https://github.com/linuxserver/docker-transmission/) alongside this one.
+
+**Daemon mode**
+
+This container runs flexget in [daemon mode](https://flexget.com/Daemon). This means by default it will run your configured tasks every hour after you've started it for the first time. If you want to run your tasks on the hour or at a different time, look at the [scheduler](https://flexget.com/Plugins/Daemon/scheduler) plugin for configuration options. Configuration is automatically reloaded every time just before starting the tasks as scheduled, to apply your changes immediately you will need to restart the container.
+
+**Web UI**
+
+FlexGet is able to host a Web UI if you have this enabled in your configuration file. See [the wiki](https://flexget.com/wiki/Web-UI) for all details. To get started, simply add:
+
+```
+web_server: yes
+```
+
+The Web UI is protected by a login, you need to setup a user after starting this docker.
+
+Connect with the running docker:
+
+```
+docker exec -it run flexget bash
+```
+
+If your configuration file is named "config.yml" you can setup a password like this:
+
+```
+flexget -c /config/config.yml web passwd <some_password>
+```
+
+Now you can open the Web UI at `http://<ip-of-the-machine-running-docker>:5050` and login with this password, use `flexget` as your username.
 
 ### User / Group Identifiers
 
