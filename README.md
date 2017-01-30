@@ -11,8 +11,8 @@ docker create \
     --name=flexget \
     -e PGID=<gid> -e PUID=<uid> \
     -p 5050:5050 \
-    -v </path/to/flexget/appdata>:/config \
-    -v </path/to/downloads>:/downloads \
+    -v <path to data>:/config \
+    -v <path to downloads>:/downloads \
     cpoppema/docker-flexget
 ```
 
@@ -32,6 +32,10 @@ FlexGet is able to connect with transmission using `transmissionrpc`, which is p
 
 Please note: This Docker image does NOT run Transmission. Consider running a [Transmission Docker image](https://github.com/linuxserver/docker-transmission/) alongside this one.
 
+**Daemon mode**
+
+This container runs flexget in [daemon mode](https://flexget.com/Daemon). This means by default it will run your configured tasks every hour after you've started it for the first time. If you want to run your tasks on the hour or at a different time, look at the [scheduler](https://flexget.com/Plugins/Daemon/scheduler) plugin for configuration options. Configuration is automatically reloaded every time just before starting the tasks as scheduled, to apply your changes immediately you will need to restart the container.
+
 **Web UI**
 
 FlexGet is able to host a Web UI if you have this enabled in your configuration file. See [the wiki](https://flexget.com/wiki/Web-UI) for all details. To get started, simply add:
@@ -48,7 +52,7 @@ Connect with the running docker:
 docker exec -it run flexget bash
 ```
 
-Setup a password:
+If your configuration file is named "config.yml" you can setup a password like this:
 
 ```
 flexget -c /config/config.yml web passwd <some_password>
