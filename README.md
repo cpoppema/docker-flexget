@@ -49,7 +49,7 @@ The Web UI is protected by a login, you need to setup a user after starting this
 Connect with the running docker:
 
 ```
-docker exec -it run flexget bash
+docker exec -it flexget bash
 ```
 
 If your configuration file is named "config.yml" you can setup a password like this:
