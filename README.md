@@ -51,7 +51,7 @@ The Web UI is protected by a login, you need to setup a user after starting this
 Connect with the running docker & set password:
 
 ```
-docker exec -it flexget flexget -c /config/config.yml web passwd <some_password>
+docker exec flexget flexget -c /config/config.yml web passwd <some_password>
 ```
 
 You can also set the environment variable `WEBPASSWD` to set it.
