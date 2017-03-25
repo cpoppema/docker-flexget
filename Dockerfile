@@ -6,14 +6,19 @@ ENV TERM screen
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
-# Install the latest available package.
-RUN apt-get update -q && \
-    apt-get install -qy python2.7 python-pip
-RUN pip install -U pip setuptools \
-    flexget transmissionrpc
+RUN apt-get update -q \
+ && apt-get install -qy \
+    python2.7 \
+    python-pip \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install the latest available package.
+RUN pip install -U \
+    pip \
+    setuptools \
+    flexget \
+    transmissionrpc
 
 # Add service files.
 ADD init/ /etc/my_init.d/
@@ -26,5 +31,5 @@ EXPOSE 5050/tcp
 VOLUME /config
 
 # Add user.
-RUN useradd -u 911 -U -s /bin/false abc
-RUN usermod -G users abc
+RUN useradd -u 911 -U -s /bin/false abc \
+ && usermod -G users abc
