@@ -14,9 +14,11 @@ RUN apt-get update -q \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install the latest available package.
+# Pin setuptools to version 32 to avoid a race condition, see:
+# https://github.com/pypa/setuptools/issues/951
 RUN pip install -U \
     pip \
-    setuptools \
+    setuptools==32 \
     flexget \
     transmissionrpc
 
