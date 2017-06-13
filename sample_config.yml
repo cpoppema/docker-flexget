@@ -1,0 +1,12 @@
+web_server: yes
+
+schedules:
+  - tasks: '*'
+    interval:
+      minutes: 1
+
+tasks:
+  test task:
+    rss: http://myfavoritersssite.com/myfeed.rss
+    series:
+      - My Favorite Show

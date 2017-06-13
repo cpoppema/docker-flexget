@@ -2,7 +2,24 @@
 
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
-An example FlexGet config.yml can be found at the bottom of [this page](http://flexget.com/Cookbook/Series/SeriesPresetMultipleRSStoTransmission).
+If you do not have a configuration already, you can look around starting off with something like this [config.yml](https://github.com/cpoppema/docker-flexget/blob/master/sample_config.yml):
+```
+web_server: yes
+
+schedules:
+  - tasks: '*'
+    interval:
+      minutes: 1
+
+tasks:
+  test task:
+    rss: http://myfavoritersssite.com/myfeed.rss
+    series:
+      - My Favorite Show
+```
+Put this file in your data/config folder as `config.yml`.
+
+For a much better FlexGet config.yml example take a look at the bottom of [this page](http://flexget.com/Cookbook/Series/SeriesPresetMultipleRSStoTransmission).
 
 ## Usage
 
