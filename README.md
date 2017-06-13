@@ -10,6 +10,7 @@ An example FlexGet config.yml can be found at the bottom of [this page](http://f
 docker create \
     --name=flexget \
     -e PGID=<gid> -e PUID=<uid> \
+    -e WEBPASSWD=<some password>
     -p 5050:5050 \
     -v <path to data>:/config \
     -v <path to downloads>:/downloads \
@@ -22,6 +23,7 @@ This container is based on phusion-baseimage with ssh removed. For shell access 
 
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
+* `-e WEBPASSWD` to set the webui password
 * `-p 5050` for Web UI port - see below for explanation
 * `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
 * `-v /downloads` - location of downloads on disk
@@ -46,17 +48,13 @@ web_server: yes
 
 The Web UI is protected by a login, you need to setup a user after starting this docker.
 
-Connect with the running docker:
+Connect with the running docker & set password:
 
 ```
-docker exec -it flexget bash
+docker exec flexget flexget -c /config/config.yml web passwd <some_password>
 ```
 
-If your configuration file is named "config.yml" you can setup a password like this:
-
-```
-flexget -c /config/config.yml web passwd <some_password>
-```
+You can also set the environment variable `WEBPASSWD` to set it.
 
 Now you can open the Web UI at `http://<ip-of-the-machine-running-docker>:5050` and login with this password, use `flexget` as your username.
 
