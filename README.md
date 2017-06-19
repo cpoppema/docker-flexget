@@ -42,6 +42,7 @@ This container is based on phusion-baseimage with ssh removed. For shell access 
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e WEB_PASSWD` for the Web UI password - see below for explanation
+* `-e TORRENT_PLUGIN` for the torrent plugin you need, e.g. "transmission" or "deluge"
 * `-p 5050` for Web UI port - see below for explanation
 * `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
 * `-v /downloads` - location of downloads on disk
