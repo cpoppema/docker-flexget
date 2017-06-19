@@ -1,3 +1,4 @@
 #!/bin/bash
 
-pip install pip flexget transmissionrpc -U
+pip install -U pip
+pip install -U flexget

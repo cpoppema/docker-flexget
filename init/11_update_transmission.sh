@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ -z "$TORRENT_PLUGIN" ] || [[ "$TORRENT_PLUGIN" == *"transmission"* ]]; then
+    pip install -U transmissionrpc
+fi

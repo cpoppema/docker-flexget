@@ -19,8 +19,7 @@ RUN apt-get update -q \
 RUN pip install -U \
     pip \
     setuptools>=36 \
-    flexget \
-    transmissionrpc
+    flexget
 
 # Add service files.
 ADD init/ /etc/my_init.d/
