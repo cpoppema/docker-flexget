@@ -9,7 +9,7 @@
 
 if [ ! -f /config/.password-lock ]; then
     if [ ! -z "$WEB_PASSWD" ]; then
-        touch /config/.password-lock && chown abc:abc /config/.password-lock
-        /usr/local/bin/flexget -c /config/config.yml --loglevel debug web passwd "$WEB_PASSWD"
+        exec /sbin/setuser abc touch /config/.password-lock
+        exec /sbin/setuser abc /usr/local/bin/flexget -c /config/config.yml --loglevel debug web passwd "$WEB_PASSWD"
     fi
 fi
