@@ -29,6 +29,7 @@ docker create \
     -e PGID=<gid> -e PUID=<uid> \
     -e WEB_PASSWD=yourhorriblesecret \
     -e TORRENT_PLUGIN=transmission \
+    -e FLEXGET_LOG_LEVEL=debug \
     -p 5050:5050 \
     -v <path to data>:/config \
     -v <path to downloads>:/downloads \
@@ -43,6 +44,7 @@ This container is based on phusion-baseimage with ssh removed. For shell access 
 * `-e PUID` for UserID - see below for explanation
 * `-e WEB_PASSWD` for the Web UI password - see below for explanation
 * `-e TORRENT_PLUGIN` for the torrent plugin you need, e.g. "transmission" or "deluge"
+* `-e FLEXGET_LOG_LEVEL` optional - for logging level - see below
 * `-p 5050` for Web UI port - see below for explanation
 * `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
 * `-v /downloads` - location of downloads on disk
@@ -98,6 +100,12 @@ Note: if you ever change your password in a running container, don't worry. Recr
 **TL;DR** - The `PGID` and `PUID` values set the user / group you'd like your container to 'run as' to the host OS. This can be a user you've created or even root (not recommended).
 
 Part of what makes this container work so well is by allowing you to specify your own `PUID` and `PGID`. This avoids nasty permissions errors with relation to data volumes (`-v` flags). When an application is installed on the host OS it is normally added to the common group called users, Docker apps due to the nature of the technology can't be added to this group. So this feature was added to let you easily choose when running your containers.
+
+### Logging Level
+
+Set the verbosity of the logger. Optional, defaults to debug if not set.  Levels: critical, error, warning, info, verbose, debug, trace
+
+[Flexget CLI](https://flexget.com/CLI)
 
 ## Updates / Monitoring
 
