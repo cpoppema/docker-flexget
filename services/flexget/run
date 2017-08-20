@@ -6,4 +6,4 @@
 # `--autoreload-config` reloads the config *before* running the tasks, not
 # when the configuration actually changes.
 #
-exec /sbin/setuser abc /usr/local/bin/flexget -c /config/config.yml --loglevel debug daemon start --autoreload-config
+exec /sbin/setuser abc /usr/local/bin/flexget -c /config/config.yml --loglevel "${FLEXGET_LOG_LEVEL:-debug}" daemon start --autoreload-config
