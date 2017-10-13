@@ -10,6 +10,7 @@ RUN apt-get update -q \
  && apt-get install -qy \
     python2.7 \
     python-pip \
+    tzdata \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
