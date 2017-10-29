@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
 # Set the password if there is no lock file. This lock file is created when
 # setting the password.
@@ -9,7 +9,7 @@
 
 if [ ! -f /config/.password-lock ]; then
     if [ ! -z "$WEB_PASSWD" ]; then
-        exec /sbin/setuser abc touch /config/.password-lock
-        exec /sbin/setuser abc /usr/local/bin/flexget -c /config/config.yml --loglevel debug web passwd "$WEB_PASSWD"
+        s6-setuidgid abc touch /config/.password-lock
+        s6-setuidgid abc /usr/bin/flexget -c /config/config.yml --loglevel "${FLEXGET_LOG_LEVEL:-debug}" web passwd "$WEB_PASSWD"
     fi
 fi

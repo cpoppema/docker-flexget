@@ -1,0 +1,20 @@
+#!/usr/bin/with-contenv bash
+
+if [[ "$TORRENT_PLUGIN" == *"deluge"* ]]; then
+    apk add --no-cache \
+        --repository http://nl.alpinelinux.org/alpine/edge/testing \
+        deluge
+
+    # Deluge is missing dependencies.
+    # https://bugs.alpinelinux.org/issues/7154
+    apk add --no-cache --virtual=build-dependencies \
+        g++ \
+        gcc \
+        openssl-dev \
+        python2-dev
+
+    pip2 install -U \
+        constantly \
+        incremental \
+        service_identity
+fi
