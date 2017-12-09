@@ -4,4 +4,5 @@ pip install -U pip
 # Make sure to install setuptools version >=36 to avoid a race condition, see:
 # https://github.com/pypa/setuptools/issues/951
 pip install -U setuptools>=36
+pip install -U urllib3[socks]
 pip install -U flexget
