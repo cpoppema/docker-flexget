@@ -16,6 +16,7 @@ if [[ "$TORRENT_PLUGIN" == *"deluge"* ]]; then
     apk add --no-cache --virtual=build-dependencies \
         g++ \
         gcc \
+        libffi-dev \
         python2-dev
 
     pip2 install -U \
