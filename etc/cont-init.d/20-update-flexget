@@ -10,3 +10,4 @@ pip install -U irc_bot
 
 # Install flexget last (it might force specific versions of other packages).
 pip install -U flexget
+pip install -U irc_bot
