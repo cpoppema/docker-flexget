@@ -7,3 +7,4 @@ pip install -U setuptools>=36
 pip install -U urllib3[socks]
 pip install -U chardet
 pip install -U flexget
+pip install -U irc_bot
