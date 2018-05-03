@@ -5,7 +5,7 @@ ENV PYTHONIOENCODING="UTF-8"
 
 # Copy local files.
 COPY etc/ /etc
-RUN apk add --no-cache
+RUN apk add --no-cache sqlite
 RUN chmod -v +x \
     /etc/cont-init.d/*  \
     /etc/services.d/*/run
