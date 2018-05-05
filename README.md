@@ -36,7 +36,7 @@ docker create \
     cpoppema/docker-flexget
 ```
 
-This container is based on phusion-baseimage with ssh removed. For shell access whilst the container is running do `docker exec -it flexget /bin/bash`.
+For shell access whilst the container is running do `docker exec -it flexget /bin/bash`.
 
 **Parameters**
 
