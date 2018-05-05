@@ -7,6 +7,8 @@ pip install -U setuptools>=36
 pip install -U urllib3[socks]
 pip install -U chardet
 pip install -U irc_bot
+pip install -U rarfile
+
 
 # Install flexget last (it might force specific versions of other packages).
 pip install -U flexget
