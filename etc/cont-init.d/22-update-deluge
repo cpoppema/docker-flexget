@@ -4,12 +4,6 @@ if [[ "$TORRENT_PLUGIN" == *"deluge"* ]]; then
     apk add --update --no-cache --virtual=build-dependencies \
         apk-tools
 
-    # Dependency for libtorrent-rasterbar.
-    apk add --no-cache \
-        boost-python@edge \
-        boost-system@edge \
-        libressl-dev@edge
-
     apk add --no-cache \
         deluge@testing
 

@@ -10,22 +10,20 @@ pip install -U irc_bot
 pip install -U rarfile
 
 
-# Install system dependencies for plugins.
-if [[ "$TORRENT_PLUGIN" != *"deluge"* ]]; then
-    # When *NOT* installing deluge, still install libtorrent,
-    # a dependency for at least the flexget plugin `convert_magnet`.
-    apk add --update --no-cache --virtual=build-dependencies \
-        apk-tools
+# Install libtorrent-rasterbar, a dependency for both
+# flexget plugin `convert_magnet`. as well as deluge.
+apk add --update --no-cache --virtual=build-dependencies \
+    apk-tools
 
-    # Dependency for libtorrent-rasterbar.
-    apk add --no-cache \
-        boost-python@edge \
-        boost-system@edge \
-        libressl-dev@edge
-    # libtorrent-rasterbar contains the python bindings libtorrent.
-    apk add --no-cache \
-        libtorrent-rasterbar@testing
-fi
+# Dependency for libtorrent-rasterbar.
+apk add --no-cache \
+    boost-python@edge \
+    boost-system@edge \
+    libressl-dev@edge
+
+# libtorrent-rasterbar contains the python bindings libtorrent.
+apk add --no-cache \
+    libtorrent-rasterbar@testing
 
 # Install flexget last (it might force specific versions of other packages).
 pip install -U flexget
