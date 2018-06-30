@@ -6,14 +6,12 @@ if [[ "$TORRENT_PLUGIN" == *"deluge"* ]]; then
 
     # Dependency for libtorrent-rasterbar.
     apk add --no-cache \
-        --repository http://nl.alpinelinux.org/alpine/edge/main \
-        boost-python \
-        boost-system \
-        libressl-dev
+        boost-python@edge \
+        boost-system@edge \
+        libressl-dev@edge
 
     apk add --no-cache \
-        --repository http://nl.alpinelinux.org/alpine/edge/testing \
-        deluge
+        deluge@testing
 
     # Deluge is missing dependencies.
     # https://bugs.alpinelinux.org/issues/7154
