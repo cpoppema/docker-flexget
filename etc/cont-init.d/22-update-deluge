@@ -5,6 +5,9 @@ if [[ "$TORRENT_PLUGIN" == *"deluge"* ]]; then
         apk-tools
 
     apk add --no-cache \
+        py-attrs@community
+
+    apk add --no-cache \
         deluge@testing
 
     # Deluge is missing dependencies.

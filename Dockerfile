@@ -7,6 +7,7 @@ ENV PYTHONIOENCODING="UTF-8"
 RUN printf "\
 @edge http://nl.alpinelinux.org/alpine/edge/main\n\
 @testing http://nl.alpinelinux.org/alpine/edge/testing\n\
+@community http://nl.alpinelinux.org/alpine/edge/community\n\
 " >> /etc/apk/repositories
 
 # Copy local files.
