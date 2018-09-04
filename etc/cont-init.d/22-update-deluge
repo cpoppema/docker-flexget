@@ -5,7 +5,7 @@ if [[ "$TORRENT_PLUGIN" == *"deluge"* ]]; then
         apk-tools
 
     apk add --no-cache \
-        py-attrs@community
+        py-attrs@edge
 
     apk add --no-cache \
         deluge@testing
