@@ -10,8 +10,8 @@ pip install -U irc_bot
 pip install -U rarfile
 
 
-# Install libtorrent-rasterbar, a dependency for both
-# flexget plugin `convert_magnet`. as well as deluge.
+# Install libtorrent-rasterbar, a dependency for e.g.
+# flexget plugin `convert_magnet`.
 apk add --update --no-cache --virtual=build-dependencies \
     apk-tools
 
