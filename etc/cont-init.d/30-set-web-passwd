@@ -7,9 +7,16 @@
 # container is recreated or restarted, after manually changing the password.
 #
 
-if [ ! -f /config/.password-lock ]; then
-    if [ ! -z "$WEB_PASSWD" ]; then
-        s6-setuidgid abc touch /config/.password-lock
-        s6-setuidgid abc /usr/bin/flexget -c /config/config.yml --loglevel "${FLEXGET_LOG_LEVEL:-debug}" web passwd "$WEB_PASSWD"
+if [ ! -z "$WEB_PASSWD" ]; then
+    if [ ! -f /config/.password-lock ]; then
+            output=$(s6-setuidgid abc /usr/bin/flexget -c /config/config.yml --loglevel "${FLEXGET_LOG_LEVEL:-debug}" web passwd "$WEB_PASSWD")
+            if [[ "$output" == *"not strong enough"* ]]; then
+                echo "Failed to set password, FlexGet deems your password as not strong enough. Update WEB_PASSWD and try again."
+                exit 1
+            else
+                s6-setuidgid abc touch /config/.password-lock
+            fi
+    else
+        echo "Not overwriting password: file /config/.password-lock exists."
     fi
 fi
