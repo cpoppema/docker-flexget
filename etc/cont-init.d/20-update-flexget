@@ -25,7 +25,7 @@ apk add --no-cache \
 apk add --no-cache \
     libcrypto1.1@edge \
     libssl1.1@edge \
-    libtorrent-rasterbar@testing
+    py2-libtorrent-rasterbar@testing
 
 # Install flexget last (it might force specific versions of other packages).
 pip install -U flexget
