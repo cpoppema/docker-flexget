@@ -1,5 +1,12 @@
 # cpoppema/docker-flexget
 
+[![Build Status](https://img.shields.io/docker/build/cpoppema/docker-flexget.svg)](https://hub.docker.com/r/cpoppema/docker-flexget/builds)
+[![Image Size](https://img.shields.io/microbadger/image-size/cpoppema/docker-flexget.svg?style=flat&color=blue)](https://hub.docker.com/r/cpoppema/docker-flexget)
+[![Docker Stars](https://img.shields.io/docker/stars/cpoppema/docker-flexget.svg?style=flat&color=blue)](https://registry.hub.docker.com/v2/repositories/cpoppema/docker-flexget/stars/count/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cpoppema/docker-flexget.svg?style=flat&color=blue)](https://registry.hub.docker.com/v2/repositories/cpoppema/docker-flexget/)
+[![Docker Automated build](https://img.shields.io/docker/automated/cpoppema/docker-flexget.svg?maxAge=2592000&style=flat&color=blue)](https://github.com/cpoppema/docker-flexget/)
+[![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/cpoppema)
+
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
 If you do not have a configuration already, you can look around starting off with something like this [config.yml](https://github.com/cpoppema/docker-flexget/blob/master/sample_config.yml):
