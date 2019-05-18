@@ -5,10 +5,15 @@ pip install -U pip
 # https://github.com/pypa/setuptools/issues/951
 pip install -U setuptools>=36
 pip install -U urllib3[socks]
+
+apk add --no-cache \
+    g++ \
+    python-dev
+
 pip install -U chardet
+pip install -U cloudscraper
 pip install -U irc_bot
 pip install -U rarfile
-
 
 # Install libtorrent-rasterbar, a dependency for e.g.
 # flexget plugin `convert_magnet`.
