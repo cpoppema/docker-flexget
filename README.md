@@ -28,6 +28,24 @@ Put this file in your data/config folder as `config.yml`.
 
 For a much better FlexGet config.yml example take a look at the bottom of [this page](http://flexget.com/Cookbook/Series/SeriesPresetMultipleRSStoTransmission).
 
+## Note
+
+Recently the python version inside this image had to be upgraded from 2.x to 3.x, this might result in this error message:
+
+```
+INFO     scheduler                     Starting scheduler
+INFO     apscheduler.scheduler                 Scheduler started
+ERROR    apscheduler.jobstores.default                 Unable to restore job "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -- removing it
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/site-packages/apscheduler/jobstores/sqlalchemy.py", line 141, in _get_jobs
+    jobs.append(self._reconstitute_job(row.job_state))
+  File "/usr/lib/python3.7/site-packages/apscheduler/jobstores/sqlalchemy.py", line 125, in _reconstitute_job
+    job_state = pickle.loads(job_state)
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe3 in position 1: ordinal not in range(128)
+```
+
+This is supposedly safe to ignore and should only happens once. If not, let me [know](https://github.com/cpoppema/docker-flexget/issues).
+
 ## Usage
 
 ```
