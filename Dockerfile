@@ -3,7 +3,7 @@
 # Simply using it as a baseimage fails:
 # - installing g++ fails (baseimage already installs it and purges it afterwards, so let's keep it)
 # - installing python 3.7.3 because that is what py3-libtorrent-rasterbar requires (doesn't work with 3.6.8)
-FROM lsiobase/alpine:3.9
+FROM lsiobase/alpine:3.10
 
 # Add edge/testing repositories.
 RUN printf "\
