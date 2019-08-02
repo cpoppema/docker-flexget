@@ -102,3 +102,12 @@ RUN chmod -v +x \
 # Ports and volumes.
 EXPOSE 5050/tcp
 VOLUME /config
+
+# Flexget looks for config.yml automatically inside:
+# /root, /root/.flexget, /root/.config
+# Since the uid/gid for user abc can be changed on the fly, set 777.
+RUN CONFIG_SYMLINK_DIR=/root \
+    && mkdir "$CONFIG_SYMLINK_DIR/.flexget" \
+    && ln -s /config/config.yml "$CONFIG_SYMLINK_DIR/.flexget/" \
+    && chmod 777 "$CONFIG_SYMLINK_DIR/" \
+    && chmod 777 "$CONFIG_SYMLINK_DIR/.flexget/"
