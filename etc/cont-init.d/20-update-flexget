@@ -16,7 +16,7 @@ apk add --update --no-cache \
 
 # Dependency for libtorrent-rasterbar.
 apk add --no-cache \
-    boost-python3@testing \
+    boost-python3@edge \
     boost-system@edge \
     libressl-dev@edge
 
