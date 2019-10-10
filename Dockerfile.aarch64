@@ -17,7 +17,9 @@ RUN apk add \
     python3-dev@edge \
     py3-lxml@edge \
     boost-python3@edge  \
-    bash@edge
+    bash@edge \
+    g++@edge \
+    gcc@edge
 
 RUN \
  echo "**** install build packages ****" && \
@@ -25,8 +27,6 @@ RUN \
     autoconf \
     automake \
     freetype-dev \
-    g++ \
-    gcc \
     jpeg-dev \
     lcms2-dev \
     libffi-dev \
