@@ -7,19 +7,15 @@ FROM lsiobase/alpine:arm32v7-3.10
 
 # Add edge/testing repositories.
 RUN printf "\
-@edge http://nl.alpinelinux.org/alpine/edge/main\n\
 @testing http://nl.alpinelinux.org/alpine/edge/testing\n\
-@community http://nl.alpinelinux.org/alpine/edge/community\n\
 " >> /etc/apk/repositories
 
 RUN apk add \
-    python3@edge \
-    python3-dev@edge \
-    py3-lxml@edge \
-    boost-python3@edge  \
-    bash@edge \
-    g++@edge \
-    gcc@edge
+    python3 \
+    python3-dev \
+    py3-lxml \
+    boost-python3  \
+    bash \
 
 RUN \
  echo "**** install build packages ****" && \
@@ -27,6 +23,8 @@ RUN \
     autoconf \
     automake \
     freetype-dev \
+    g++ \
+    gcc \
     jpeg-dev \
     lcms2-dev \
     libffi-dev \

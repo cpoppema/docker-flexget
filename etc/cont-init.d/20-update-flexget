@@ -17,14 +17,13 @@ apk add --update --no-cache \
 
 # Dependency for libtorrent-rasterbar.
 apk add --no-cache \
-    boost-python3@edge \
-    boost-system@edge \
-    libressl-dev@edge
+    boost-system \
+    libressl-dev
 
 # libtorrent-rasterbar contains the python bindings for libtorrent.
 apk add --no-cache \
-    libcrypto1.1@edge \
-    libssl1.1@edge \
+    libcrypto1.1 \
+    libssl1.1 \
     py3-libtorrent-rasterbar@testing
 
 # Install flexget last (it might force specific versions of other packages).
