@@ -72,6 +72,7 @@ For shell access whilst the container is running do `docker exec -it flexget /bi
 * `-e TORRENT_PLUGIN` for the torrent plugin you need, e.g. "transmission" or "deluge"
 * `-e TZ` for timezone information, e.g. "Europe/London"
 * `-e FLEXGET_LOG_LEVEL` for logging level - see below for explanation
+* `-e PIP_REQUIREMENTS_FILE` to either add neccessary packages for plugins _or_ to pin e.g. FlexGet to a certain version until you have time to migrate your configuration because they might be incompatible.
 * `-p 5050` for Web UI port - see below for explanation
 * `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
 * `-v /downloads` - location of downloads on disk
@@ -125,6 +126,51 @@ Note: if you ever change your password in a running container, don't worry. Recr
 **Logging Level**
 
 Set the verbosity of the logger. Optional, defaults to debug if not set. Levels: critical, error, warning, info, verbose, debug, trace.
+
+**Installing additional packages**
+
+
+Using `-e PIP_REQUIREMENTS_FILE` you can install extra plugin packages you need that are not (yet) baked into this image. If you want to this image to support your plugin out of the box, open an issue to request it or create pull request to add it! Until that's done, here's how you can add packages.
+
+Specifying `-e PIP_REQUIREMENTS_FILE` will install packages *besides* the provided [requirements.txt](https://github.com/cpoppema/docker-flexget/blob/master/requirements.txt).
+
+To get started, create a file `my-requirements.txt` inside your /config directory. Let's say you need `sleekxmpp` for the xmpp notifier system and it is missing from this image. You tell the image where to find it like this:
+
+```
+docker create \
+    --name=flexget \
+    -e PIP_REQUIREMENTS_FILE=/config/my-requirements.txt \
+    -v <path to data>:/config \
+    -v <path to downloads>:/downloads \
+    cpoppema/docker-flexget
+```
+
+If you don't like adding files to your /config directory, you can put it anywhere with an extra -v flag:
+
+```
+docker create \
+    --name=flexget \
+    -e PIP_REQUIREMENTS_FILE=/my-requirements.txt \
+    -v <path to data>:/config \
+    -v <path to downloads>:/downloads \
+    -v <path to my-requirements.txt>:/my-requirements.txt \
+    cpoppema/docker-flexget
+```
+
+**Pinning packages or FlexGet**
+
+To pin packages that are automatically installed you use -v to overwrite `/requirements.txt`:
+
+```
+docker create \
+    --name=flexget \
+    -v <path to data>:/config \
+    -v <path to downloads>:/downloads \
+    -v <path to version pinned requirements.txt>:/requirements.txt \
+    cpoppema/docker-flexget
+```
+
+If you want to pin packages that are not automatically installed, you can follow the instructions above and [put the versions](https://pip.pypa.io/en/stable/user_guide/#pinned-version-numbers) you want in `my-requirements.txt`.
 
 ### User / Group Identifiers
 
