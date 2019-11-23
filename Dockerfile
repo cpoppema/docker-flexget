@@ -103,6 +103,7 @@ COPY etc/ /etc
 RUN chmod -v +x \
     /etc/cont-init.d/*  \
     /etc/services.d/*/run
+COPY requirements.txt /
 
 # Ports and volumes.
 EXPOSE 5050/tcp

@@ -1,14 +1,65 @@
 #!/usr/bin/with-contenv bash
 
 pip install -U pip
-pip install -U "urllib3[socks]"
 
-pip install -U chardet
-pip install -U cloudscraper
-pip install -U irc_bot
-pip install -U python-telegram-bot
-pip install -U rarfile
-pip install -U subliminal
+# Preferably deps are installed using `pip install -r requirements.txt`. This
+# however results in packages complaining about version mismatches. Here are
+# some sample errors to keep in mind if we'd like to step away from
+# pip install runs per package.
 
-# Install flexget last (it might force specific versions of other packages).
-pip install -U flexget
+# ERROR: flexget 3.0.8 has requirement beautifulsoup4==4.6.0, but you'll have beautifulsoup4 4.8.1 which is incompatible.
+# ERROR: flexget 3.0.8 has requirement certifi==2017.4.17, but you'll have certifi 2019.9.11 which is incompatible.
+# ERROR: flexget 3.0.8 has requirement chardet==3.0.3, but you'll have chardet 3.0.4 which is incompatible.
+# ERROR: flexget 3.0.8 has requirement click==6.7, but you'll have click 7.0 which is incompatible.
+# ERROR: flexget 3.0.8 has requirement pytz==2017.2, but you'll have pytz 2019.3 which is incompatible.
+# ERROR: flexget 3.0.8 has requirement requests==2.21.0, but you'll have requests 2.22.0 which is incompatible.
+# ERROR: flexget 3.0.8 has requirement urllib3==1.24.2, but you'll have urllib3 1.25.7 which is incompatible.
+
+# ERROR: guessit 3.1.0 has requirement rebulk==2.*, but you'll have rebulk 0.9.0 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement beautifulsoup4==4.6.0, but you'll have beautifulsoup4 4.8.1 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement certifi==2017.4.17, but you'll have certifi 2019.9.11 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement chardet==3.0.3, but you'll have chardet 3.0.4 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement click==6.7, but you'll have click 7.0 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement future==0.16.0, but you'll have future 0.18.2 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement guessit==3.0.3, but you'll have guessit 3.1.0 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement pytz==2017.2, but you'll have pytz 2019.3 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement requests==2.21.0, but you'll have requests 2.22.0 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement six==1.10.0, but you'll have six 1.13.0 which is incompatible.
+# ERROR: flexget 2.21.35 has requirement urllib3==1.24.2, but you'll have urllib3 1.25.6 which is incompatible.
+
+# Traceback (most recent call last):
+#   File "/usr/lib/python3.7/site-packages/stevedore/extension.py", line 195, in _load_plugins
+#     verify_requirements,
+#   File "/usr/lib/python3.7/site-packages/stevedore/extension.py", line 223, in _load_one_plugin
+#     plugin = ep.resolve()
+#   File "/usr/lib/python3.7/site-packages/pkg_resources/__init__.py", line 2449, in resolve
+#     module = __import__(self.module_name, fromlist=['__name__'], level=0)
+#   File "/usr/lib/python3.7/site-packages/subliminal/providers/thesubdb.py", line 38, in <module>
+#     class TheSubDBProvider(Provider):
+#   File "/usr/lib/python3.7/site-packages/subliminal/providers/thesubdb.py", line 40, in TheSubDBProvider
+#     languages = {Language.fromthesubdb(l) for l in language_converters['thesubdb'].codes}
+#   File "/usr/lib/python3.7/site-packages/babelfish/converters/__init__.py", line 240, in __getitem__
+#     self.converters[ep.name] = ep.load()()
+#   File "/usr/lib/python3.7/site-packages/pkg_resources/__init__.py", line 2442, in load
+#     self.require(*args, **kwargs)
+#   File "/usr/lib/python3.7/site-packages/pkg_resources/__init__.py", line 2465, in require
+#     items = working_set.resolve(reqs, env, installer, extras=self.extras)
+#   File "/usr/lib/python3.7/site-packages/pkg_resources/__init__.py", line 791, in resolve
+#     raise VersionConflict(dist, req).with_context(dependent_req)
+# pkg_resources.ContextualVersionConflict: (rebulk 0.9.0 (/usr/lib/python3.7/site-packages), Requirement.parse('rebulk==2.*'), {'guessit'})
+
+# Meaning: we're doing it the old fashioned way: pip install -U every line.
+
+if [ ! -z "$PIP_REQUIREMENTS_FILE" ]; then
+    while IFS= read -r line; do
+        if [ ! -z "$line" ] && [[ "$line" != \#* ]]; then
+            pip install -U "$line"
+        fi
+    done < "$PIP_REQUIREMENTS_FILE"
+fi
+
+while IFS= read -r line; do
+    if [ ! -z "$line" ] && [[ "$line" != \#* ]]; then
+        pip install -U "$line"
+    fi
+done < /requirements.txt

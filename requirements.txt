@@ -1,0 +1,13 @@
+urllib3[socks]
+
+# Plugins.
+chardet
+cloudscraper
+irc_bot
+python-telegram-bot
+rarfile
+sleekxmpp
+subliminal
+
+# Install flexget last (it might force specific versions of other packages).
+flexget
