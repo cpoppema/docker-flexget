@@ -7,6 +7,10 @@
 # when the configuration actually changes.
 #
 
+if [ -f /config/.config-lock ]; then
+    rm /config/.config-lock
+fi
+
 s6-setuidgid abc /usr/bin/flexget \
     --loglevel "${FLEXGET_LOG_LEVEL:-debug}" \
     daemon start --autoreload-config
