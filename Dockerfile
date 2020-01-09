@@ -6,6 +6,8 @@
 FROM lsiobase/alpine:3.10
 
 RUN apk add \
+    libxml2-dev \
+    libxslt-dev \
     python3 \
     python3-dev \
     py3-lxml \
