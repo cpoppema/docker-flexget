@@ -51,7 +51,8 @@ This is supposedly safe to ignore and should only happens once. If not, let me [
 ```
 docker create \
     --name=flexget \
-    -e PGID=<gid> -e PUID=<uid> \
+    -e PUID=<uid> \
+    -e PGID=<gid> \
     -e WEB_PASSWD=yourhorriblesecret \
     -e TORRENT_PLUGIN=transmission \
     -e TZ=Europe/London \
@@ -66,8 +67,8 @@ For shell access whilst the container is running do `docker exec -it flexget /bi
 
 **Parameters**
 
-* `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
+* `-e PGID` for GroupID - see below for explanation
 * `-e WEB_PASSWD` for the Web UI password - see below for explanation
 * `-e TORRENT_PLUGIN` for the torrent plugin you need, e.g. "transmission" or "deluge"
 * `-e TZ` for timezone information, e.g. "Europe/London"
