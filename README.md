@@ -48,6 +48,8 @@ This is supposedly safe to ignore and should only happens once. If not, let me [
 
 ## Usage
 
+### docker
+
 ```
 docker create \
     --name=flexget \
@@ -61,6 +63,30 @@ docker create \
     -v <path to data>:/config \
     -v <path to downloads>:/downloads \
     cpoppema/docker-flexget
+```
+
+### docker-compose
+
+```
+---
+version: "2"
+services:
+  flexget:
+    image: cpoppema/docker-flexget
+    container_name: flexget
+    environment:
+      - PUID=<uid>
+      - PGID=<gid>
+      - WEB_PASSWD=yourhorriblesecret
+      - TORRENT_PLUGIN=transmission
+      - TZ=Europe/London
+      - FLEXGET_LOG_LEVEL=debug
+    volumes:
+      - <path to data>:/config
+      - <path to downloads>:/downloads
+    ports:
+      - 5050:5050
+    restart: unless-stopped
 ```
 
 For shell access whilst the container is running do `docker exec -it flexget /bin/bash`.
