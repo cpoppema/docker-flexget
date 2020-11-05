@@ -4,6 +4,7 @@ urllib3[socks]
 chardet
 cloudscraper
 irc_bot
+pytz
 python-telegram-bot<13
 rarfile
 sleekxmpp
