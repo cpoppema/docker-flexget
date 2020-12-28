@@ -106,7 +106,7 @@ For shell access whilst the container is running do `docker exec -it flexget /bi
 
 **Torrent plugin: Transmission**
 
-FlexGet is able to connect with transmission using `transmissionrpc`, which is installed as the default torrent plugin in this container. For more details, see http://flexget.com/wiki/Plugins/transmission.
+FlexGet is able to connect with transmission using `transmission-rpc`, which is installed as the default torrent plugin in this container. For more details, see http://flexget.com/wiki/Plugins/transmission.
 
 Please note: This Docker image does NOT run Transmission. Consider running a [Transmission Docker image](https://github.com/linuxserver/docker-transmission/) alongside this one.
 
@@ -114,7 +114,7 @@ For transmission to work you can either omit the `TORRENT_PLUGIN` environment va
 
 **Torrent plugin: Deluge**
 
-FlexGet is also able to connect with deluge using `deluge-common`, which can be installed in this container, replacing the transmission plugin. For more details, see https://www.flexget.com/Plugins/deluge.
+FlexGet is also able to connect with deluge using `deluge-client`, which can be installed in this container, replacing the transmission plugin. For more details, see https://www.flexget.com/Plugins/deluge.
 
 Please note: This Docker image does NOT run Deluge. Consider running a [Deluge Docker image](https://hub.docker.com/r/linuxserver/deluge/) alongside this one.
 

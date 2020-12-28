@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bash
 
 if [ -z "$TORRENT_PLUGIN" ] || [[ "$TORRENT_PLUGIN" == *"transmission"* ]]; then
-    pip install -U transmissionrpc
+    pip install -U transmission-rpc
 fi
