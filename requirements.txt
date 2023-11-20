@@ -4,9 +4,8 @@ urllib3[socks]
 chardet
 cloudscraper
 irc_bot
-python-telegram-bot<13
-rarfile
-sleekxmpp
+python-telegram-bot
+slixmpp
 subliminal
 
 # Install flexget last (it might force specific versions of other packages).
